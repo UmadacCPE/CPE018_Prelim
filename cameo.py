@@ -1,6 +1,5 @@
 import cv2
 from managers import WindowManager, CaptureManager
-import filters
 
 class Cameo(object):
     def __init__(self):
@@ -14,13 +13,7 @@ class Cameo(object):
         while self._windowManager.isWindowCreated:
             self._captureManager.enterFrame()
             frame = self._captureManager.frame
-
-            # Apply filters here
-            if frame is not None:
-                filters.strokeEdges(frame, frame)
-                curveFilter = filters.BGRPortraCurveFilter()
-                curveFilter.apply(frame, frame)
-
+            # TODO: Filter the frame
             self._captureManager.exitFrame()
             self._windowManager.processEvents()
 
